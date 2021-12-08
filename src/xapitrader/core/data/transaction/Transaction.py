@@ -1,5 +1,7 @@
 from xapitrader.utils import time
 from xapitrader.types import types
+from xapitrader import settings
+
 
 class Transaction():
     def __init__(self, position, trade_info: types.TRADE_TRANS_INFO):
@@ -21,10 +23,11 @@ class Transaction():
             self._profit = self._closePrice - self._openPrice
             self._profit_percent = (self._profit/self._openPrice)*100
             self._is_open = False
-            filename = self._trade_info.symbol
-            with open(f'{filename}.log', mode='a+',encoding = 'utf-8') as f:
-                details = self._get_string()
-                f.write(details + "\n")
+            if settings.LOG_TRANSACTIONS:
+                filename = self._trade_info.symbol
+                with open(f'{filename}.log', mode='a+',encoding = 'utf-8') as f:
+                    details = self._get_string()
+                    f.write(details + "\n")
 
     def _get_string(self):
         if not self._is_open:

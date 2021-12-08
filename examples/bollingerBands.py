@@ -7,17 +7,6 @@ from xapitrader.utils import time
 from xapitrader.tools import indicators
 from xapitrader.types import types
 
-def upper_middle_variant(upper_band, middle_band, tick, trading_guard):
-    if not trading_guard.is_open():
-        ask = tick['returnData']['quotations'][0]['ask']
-        if ask >= upper_band:
-            trading_guard.open_transaction(ask)
-    if trading_guard.is_open():
-        bid = tick['returnData']['quotations'][0]['bid']
-        if bid <= middle_band:
-            trading_guard.close_transaction(bid)
-
-
 class BollingerBandsStrategy:
     def __init__(self, client, symbol):
         self._symbol = symbol

@@ -11,5 +11,10 @@ Development-like installation is advised by following these steps:
 2. clone the repository
 3. install as local package for modification 'pip install -e xapitrader'
 
+Basic application settings are defined in settings.py file. By default application logs and made transactions will be logged into files.
+
+!WARNING!
+Setting SIMULATION_MODE to 'False' will cause real trade transactions using your real money to be executed instead of 'fakes' one.
+
 # Examples
 You can find simple example with explenation in 'examples/bollingerBands.py' where basic strategy is implemented using xapitrader.
